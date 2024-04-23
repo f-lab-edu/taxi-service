@@ -6,3 +6,9 @@ pluginManagement {
 }
 
 rootProject.name = 'taxi-service'
+
+include 'core:core-api'
+include 'core:core-domain'
+include 'storage:db-core'
+include 'support:logging'
+include 'support:monitoring'
