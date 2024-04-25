@@ -10,19 +10,10 @@
         </encoder>
     </appender>
 
-    <appender name="SENTRY" class="io.sentry.logback.SentryAppender">
-        <options>
-            <dsn>YOUR_DSN</dsn>
-        </options>
-        <minimumEventLevel>WARN</minimumEventLevel>
-        <minimumBreadcrumbLevel>INFO</minimumBreadcrumbLevel>
-    </appender>
-
     <logger name="org.springframework" level="INFO"/>
     <logger name="com.giwankim.taxiservice" level="DEBUG"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="SENTRY"/>
     </root>
 </configuration>
