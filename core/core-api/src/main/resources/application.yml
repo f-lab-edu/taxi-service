@@ -1,0 +1,17 @@
+spring.application.name: core-api
+spring.profiles.active: local
+
+spring:
+  config:
+    import:
+      - logging.yml
+      #      - monitoring.yml
+      - db-core.yml
+  web.resources.add-mappings: false
+
+---
+spring.config.activate.on-profile: local
+
+
+---
+spring.config.activate.on-profile: dev
