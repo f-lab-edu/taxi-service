@@ -29,4 +29,8 @@ public class SearchLocationsQuery extends SelfValidating<SearchLocationsQuery> {
     this.size = size == null ? 10 : size;
     this.validateSelf();
   }
+
+  public SearchLocationsQuery(String keyword) {
+    this(keyword, null, null);
+  }
 }
