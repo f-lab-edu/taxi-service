@@ -1,6 +1,6 @@
 package com.giwankim.taxiservice.core.domain.application.service;
 
-import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsQuery;
+import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase.SearchLocationsQuery;
 import com.giwankim.taxiservice.core.domain.application.port.out.SearchLocationPort;
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class SearchLocationsServiceTest {
 
     given(searchLocationPort.searchLocations("역")).willReturn(locations);
 
-    List<Location> actual = sut.searchLocations(new SearchLocationsQuery("역"));
+    List<Location> actual = sut.searchLocations(new SearchLocationsQuery("역", 1, 10));
 
     assertThat(actual).containsExactlyInAnyOrderElementsOf(locations);
   }

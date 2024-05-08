@@ -8,4 +8,6 @@ public interface SearchLocationsUseCase {
 
   List<Location> searchLocations(SearchLocationsQuery query);
 
+  record SearchLocationsQuery(String keyword, int page, int size) {
+  }
 }
