@@ -1,13 +1,11 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
 import lombok.Builder;
-import lombok.Value;
 
-@Value
 public class Location {
-  String name;
-  double latitude;
-  double longitude;
+  private final String name;
+  private final double latitude;
+  private final double longitude;
 
   @Builder
   public Location(String name, double latitude, double longitude) {
