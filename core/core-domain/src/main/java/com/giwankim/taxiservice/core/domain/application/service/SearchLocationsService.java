@@ -16,6 +16,6 @@ public class SearchLocationsService implements SearchLocationsUseCase {
 
   @Override
   public List<Location> searchLocations(SearchLocationsQuery query) {
-    return searchLocationPort.searchLocations(query.keyword());
+    return searchLocationPort.searchLocations(query.keyword(), query.page(), query.size());
   }
 }

@@ -23,9 +23,9 @@ class SearchLocationsServiceTest {
       Location.builder().name("강남역").latitude(37.496486063).longitude(127.028361548).build(),
       Location.builder().name("판교역").latitude(37.394726159).longitude(127.111209047).build());
 
-    given(searchLocationPort.searchLocations("역")).willReturn(locations);
+    given(searchLocationPort.searchLocations("역", 1, 2)).willReturn(locations);
 
-    List<Location> actual = sut.searchLocations(new SearchLocationsQuery("역", 1, 10));
+    List<Location> actual = sut.searchLocations(new SearchLocationsQuery("역", 1, 2));
 
     assertThat(actual).containsExactlyInAnyOrderElementsOf(locations);
   }
