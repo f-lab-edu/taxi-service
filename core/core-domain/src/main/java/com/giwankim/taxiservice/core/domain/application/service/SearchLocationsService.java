@@ -4,12 +4,12 @@ import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsU
 import com.giwankim.taxiservice.core.domain.application.port.out.SearchLocationPort;
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@Component
+@Service
 public class SearchLocationsService implements SearchLocationsUseCase {
 
   private final SearchLocationPort searchLocationPort;
