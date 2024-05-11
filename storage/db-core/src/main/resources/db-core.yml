@@ -16,6 +16,34 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        show_sql: true
+  h2:
+    console:
+      enabled: true
+
+logging.level:
+  org.hibernate.SQL: debug
+
+storage:
+  datasource:
+    core:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:core;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      pool-name: core-db-pool
+      data-source-properties:
+        rewriteBatchedStatements: true
+
+---
+spring.config.activate.on-profile: local-dev
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
 
 storage:
   datasource:
@@ -24,9 +52,15 @@ storage:
       jdbc-url: jdbc:mysql://localhost:3306/taxi_service
       username: gwk
       password: password123
+      maximum-pool-size: 5
+      connection-timeout: 1100
+      keepalive-time: 30000
+      validation-timeout: 1000
+      max-lifetime: 600000
       pool-name: core-db-pool
       # https://github.com/brettwooldridge/HikariCP/wiki/MySQL-Configuration
       data-source-properties:
+        socketTimeout: 3000
         cachePrepStmts: true
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
@@ -37,7 +71,6 @@ storage:
         cacheServerConfiguration: true
         elideSetAutoCommits: true
         maintainTimeStats: false
-
 
 ---
 spring.config.activate.on-profile: dev
