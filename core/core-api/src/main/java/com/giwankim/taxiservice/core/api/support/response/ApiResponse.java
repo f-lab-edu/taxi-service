@@ -20,11 +20,11 @@ public class ApiResponse<T> {
     return new ApiResponse<>(ResultType.SUCCESS, data, null);
   }
 
-  public static ApiResponse<?> failure(ErrorType errorType) {
-    return new ApiResponse<>(ResultType.FAILURE, null, new ErrorMessage(errorType));
+  public static ApiResponse<?> error(ErrorType errorType) {
+    return new ApiResponse<>(ResultType.ERROR, null, new ErrorMessage(errorType));
   }
 
-  public static ApiResponse<?> failure(ErrorType errorType, Object errorData) {
-    return new ApiResponse<>(ResultType.FAILURE, errorData, new ErrorMessage(errorType, errorData));
+  public static ApiResponse<?> error(ErrorType errorType, Object errorData) {
+    return new ApiResponse<>(ResultType.ERROR, errorData, new ErrorMessage(errorType, errorData));
   }
 }
