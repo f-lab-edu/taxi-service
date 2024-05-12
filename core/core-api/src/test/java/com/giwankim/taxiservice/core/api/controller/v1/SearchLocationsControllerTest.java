@@ -60,7 +60,9 @@ class SearchLocationsControllerTest {
 
   @ParameterizedTest()
   @NullAndEmptySource
-  @ValueSource(strings = {"   ", "\t", "\n", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"})
+  @ValueSource(strings = {"   ", "\t", "\n",
+    "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+    "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"})
   @DisplayName("키워드를 밸리데이션 한다")
   void validateKeyword(String keyword) throws Exception {
     mockMvc.perform(get("/location/search")
