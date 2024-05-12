@@ -1,7 +1,9 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class Location {
   private final String name;
   private final double latitude;
