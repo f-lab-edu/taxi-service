@@ -25,6 +25,6 @@ public class ApiResponse<T> {
   }
 
   public static ApiResponse<?> error(ErrorType errorType, Object errorData) {
-    return new ApiResponse<>(ResultType.ERROR, errorData, new ErrorMessage(errorType, errorData));
+    return new ApiResponse<>(ResultType.ERROR, null, new ErrorMessage(errorType, errorData));
   }
 }
