@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SearchLocationRequest {
   @NotBlank(message = "키워드를 입력하셔야 합니다.")
-  @Size(max = 100, message = "키워드의 길이는 100 이하이어야 합니다.")
+  @Size(max = 40, message = "키워드의 길이는 100 이하이어야 합니다.")
   private String keyword;
 
   @Min(value = 1, message = "page의 값은 1 이상이어야 합니다.")
