@@ -1,0 +1,6 @@
+spring.application.name: location-client-test
+
+spring:
+  config:
+    import:
+      - client-location.yml
