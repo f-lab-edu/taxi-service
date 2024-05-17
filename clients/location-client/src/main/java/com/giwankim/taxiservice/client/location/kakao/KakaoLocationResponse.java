@@ -14,8 +14,8 @@ record KakaoLocationResponse(Meta meta, List<Document> documents) {
   @JsonIgnoreProperties(ignoreUnknown = true)
   record Document(String addressName,
                   AddressType addressType,
-                  String x,
-                  String y) {
+                  Double x,
+                  Double y) {
 
   }
 

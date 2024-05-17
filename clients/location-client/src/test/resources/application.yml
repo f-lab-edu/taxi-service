@@ -1,5 +1,11 @@
 spring.application.name: location-client-test
 
+location:
+  kakao:
+    api:
+      url: http://localhost:8089
+      key: apiKey
+
 spring:
   config:
     import:

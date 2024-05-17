@@ -14,8 +14,8 @@ class KakaoLocationMapper {
       .map(document ->
         new Location(
           document.addressName(),
-          Double.parseDouble(document.x()),
-          Double.parseDouble(document.y())))
+          document.y(),
+          document.x()))
       .toList();
   }
 }
