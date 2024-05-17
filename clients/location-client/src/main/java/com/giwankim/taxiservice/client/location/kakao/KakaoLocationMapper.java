@@ -1,4 +1,4 @@
-package com.giwankim.taxiservice.client.location;
+package com.giwankim.taxiservice.client.location.kakao;
 
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import org.springframework.stereotype.Component;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class LocationMapper {
+class KakaoLocationMapper {
 
-  List<Location> mapToLocations(LocationsResponse response) {
+  List<Location> mapToLocations(KakaoLocationResponse response) {
     return response.documents()
       .stream()
       .map(document ->

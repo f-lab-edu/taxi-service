@@ -1,4 +1,4 @@
-package com.giwankim.taxiservice.client.location;
+package com.giwankim.taxiservice.client.location.kakao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record LocationsResponse(Meta meta, List<Document> documents) {
+record KakaoLocationResponse(Meta meta, List<Document> documents) {
 
   @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
   @JsonIgnoreProperties(ignoreUnknown = true)

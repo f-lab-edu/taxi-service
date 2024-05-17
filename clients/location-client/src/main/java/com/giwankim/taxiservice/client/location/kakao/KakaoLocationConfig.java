@@ -1,4 +1,4 @@
-package com.giwankim.taxiservice.client.location;
+package com.giwankim.taxiservice.client.location.kakao;
 
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @EnableFeignClients
 @Configuration
-public class LocationConfig {
+class KakaoLocationConfig {
 
   @Value("${location.kakao.api.key}")
   private String apiKey;
