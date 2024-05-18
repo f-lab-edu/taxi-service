@@ -58,7 +58,7 @@ class SearchLocationsControllerTest {
       .searchLocations(new SearchLocationsQuery("역", 1, 10));
   }
 
-  @ParameterizedTest()
+  @ParameterizedTest(name = "keyword = {0}")
   @NullAndEmptySource
   @ValueSource(strings = {"   ", "\t", "\n",
     "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
