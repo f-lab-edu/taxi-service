@@ -21,7 +21,7 @@ class SearchLocationsController {
     this.searchLocationsUseCase = searchLocationsUseCase;
   }
 
-  @GetMapping(value = "/location/search")
+  @GetMapping(value = "/v1/location/search")
   ApiResponse<List<LocationResponse>> searchLocations(@Valid SearchLocationRequest request) {
     SearchLocationsQuery query = new SearchLocationsQuery(request.keyword(), request.page(), request.size());
     List<Location> locations = searchLocationsUseCase.searchLocations(query);

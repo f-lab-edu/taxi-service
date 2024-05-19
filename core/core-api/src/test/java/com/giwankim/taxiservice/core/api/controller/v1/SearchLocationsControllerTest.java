@@ -23,6 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = SearchLocationsController.class)
 class SearchLocationsControllerTest {
 
+  public static final String ENDPOINT = "/v1/location/search";
+
   @Autowired
   private MockMvc mockMvc;
 
@@ -35,7 +37,7 @@ class SearchLocationsControllerTest {
   @Test
   @DisplayName("검색어를 통해 위치 정보를 조회한다.")
   void searchLocations() throws Exception {
-    mockMvc.perform(get("/location/search")
+    mockMvc.perform(get(ENDPOINT)
         .param("keyword", "역")
         .param("page", "1")
         .param("size", "10"))
@@ -49,7 +51,7 @@ class SearchLocationsControllerTest {
   @Test
   @DisplayName("page와 size를 입력하지 않을 경우 기본값으로 조회한다.")
   void defaultValues() throws Exception {
-    mockMvc.perform(get("/location/search")
+    mockMvc.perform(get(ENDPOINT)
         .param("keyword", "역"))
       .andDo(print())
       .andExpect(status().isOk());
@@ -65,7 +67,7 @@ class SearchLocationsControllerTest {
     "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"})
   @DisplayName("키워드를 밸리데이션 한다")
   void validateKeyword(String keyword) throws Exception {
-    mockMvc.perform(get("/location/search")
+    mockMvc.perform(get(ENDPOINT)
         .param("keyword", keyword)
         .param("page", "1")
         .param("size", "10"))
@@ -79,7 +81,7 @@ class SearchLocationsControllerTest {
   @CsvSource({"0,10", "46,10", "1,0", "1,31"})
   @DisplayName("페이지와 사이즈를 밸리데이션 한다.")
   void validatePageAndSize(int page, int size) throws Exception {
-    mockMvc.perform(get("/location/search")
+    mockMvc.perform(get(ENDPOINT)
         .param("keyword", "역")
         .param("page", String.valueOf(page))
         .param("size", String.valueOf(size)))
