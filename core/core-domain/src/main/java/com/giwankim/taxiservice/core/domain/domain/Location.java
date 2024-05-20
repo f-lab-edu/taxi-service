@@ -1,10 +1,12 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
-
+@EqualsAndHashCode(exclude = "name")
+@ToString(exclude = "name")
 @Getter
 public class Location {
   private final String name;
@@ -16,26 +18,5 @@ public class Location {
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Location location)) return false;
-    return Double.compare(latitude, location.latitude) == 0 && Double.compare(longitude, location.longitude) == 0;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(latitude, longitude);
-  }
-
-  @Override
-  public String toString() {
-    return "Location{" +
-      "name='" + name + '\'' +
-      ", latitude=" + latitude +
-      ", longitude=" + longitude +
-      '}';
   }
 }
