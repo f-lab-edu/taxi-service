@@ -3,7 +3,10 @@ plugins {
     id 'java-library'
     id 'org.springframework.boot' apply(false)
     id 'io.spring.dependency-management'
+    id 'com.diffplug.spotless' apply(false)
 }
+
+apply from: 'lint.gradle'
 
 allprojects {
     group = "${projectGroup}"
@@ -39,6 +42,7 @@ subprojects {
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
