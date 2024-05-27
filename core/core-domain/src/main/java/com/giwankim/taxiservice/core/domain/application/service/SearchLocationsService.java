@@ -1,12 +1,12 @@
 package com.giwankim.taxiservice.core.domain.application.service;
 
+import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsQuery;
 import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase;
 import com.giwankim.taxiservice.core.domain.application.port.out.SearchLocationPort;
 import com.giwankim.taxiservice.core.domain.domain.Location;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
