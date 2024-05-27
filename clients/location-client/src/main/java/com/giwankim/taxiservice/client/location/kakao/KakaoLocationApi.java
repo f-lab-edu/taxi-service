@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 interface KakaoLocationApi {
 
   @RequestMapping(method = RequestMethod.GET, value = "/search/address.json",
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+      consumes = MediaType.APPLICATION_JSON_VALUE)
   KakaoLocationResponse searchLocations(@SpringQueryMap KakaoLocationRequest request);
 }

@@ -7,7 +7,7 @@ location:
 spring.cloud.openfeign:
   client:
     config:
-      example-api:
+      kakao-location-api:
         connectTimeout: 2100
         readTimeout: 5000
         loggerLevel: full

@@ -3,23 +3,21 @@ package com.giwankim.taxiservice.core.api.controller.v1;
 import com.giwankim.taxiservice.core.api.controller.v1.request.SearchLocationRequest;
 import com.giwankim.taxiservice.core.api.controller.v1.response.LocationResponse;
 import com.giwankim.taxiservice.core.api.support.response.ApiResponse;
+import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsQuery;
 import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase;
-import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase.SearchLocationsQuery;
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 class SearchLocationsController {
 
   private final SearchLocationsUseCase searchLocationsUseCase;
-
-  SearchLocationsController(SearchLocationsUseCase searchLocationsUseCase) {
-    this.searchLocationsUseCase = searchLocationsUseCase;
-  }
 
   @GetMapping(value = "/v1/location/search")
   ApiResponse<List<LocationResponse>> searchLocations(@Valid SearchLocationRequest request) {

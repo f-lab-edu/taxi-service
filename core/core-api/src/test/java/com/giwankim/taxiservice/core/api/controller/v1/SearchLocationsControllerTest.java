@@ -1,8 +1,8 @@
 package com.giwankim.taxiservice.core.api.controller.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsQuery;
 import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase;
-import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase.SearchLocationsQuery;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,43 +38,43 @@ class SearchLocationsControllerTest {
   @DisplayName("검색어를 통해 위치 정보를 조회한다.")
   void searchLocations() throws Exception {
     mockMvc.perform(get(ENDPOINT)
-        .param("keyword", "역")
-        .param("page", "1")
-        .param("size", "10"))
-      .andDo(print())
-      .andExpect(status().isOk());
+            .param("keyword", "역")
+            .param("page", "1")
+            .param("size", "10"))
+        .andDo(print())
+        .andExpect(status().isOk());
 
     then(searchLocationsUseCase).should()
-      .searchLocations(new SearchLocationsQuery("역", 1, 10));
+        .searchLocations(new SearchLocationsQuery("역", 1, 10));
   }
 
   @Test
   @DisplayName("page와 size를 입력하지 않을 경우 기본값으로 조회한다.")
   void defaultValues() throws Exception {
     mockMvc.perform(get(ENDPOINT)
-        .param("keyword", "역"))
-      .andDo(print())
-      .andExpect(status().isOk());
+            .param("keyword", "역"))
+        .andDo(print())
+        .andExpect(status().isOk());
 
     then(searchLocationsUseCase).should()
-      .searchLocations(new SearchLocationsQuery("역", 1, 10));
+        .searchLocations(new SearchLocationsQuery("역", 1, 10));
   }
 
   @ParameterizedTest(name = "keyword = {0}")
   @NullAndEmptySource
   @ValueSource(strings = {"   ", "\t", "\n",
-    "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
-    "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"})
+      "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+      "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"})
   @DisplayName("키워드를 밸리데이션 한다")
   void validateKeyword(String keyword) throws Exception {
     mockMvc.perform(get(ENDPOINT)
-        .param("keyword", keyword)
-        .param("page", "1")
-        .param("size", "10"))
-      .andDo(print())
-      .andExpect(status().isBadRequest())
-      .andExpect(jsonPath("$.error.code").value("E400"))
-      .andExpect(jsonPath("$.error.message").value("요청 변수를 확인해 주세요."));
+            .param("keyword", keyword)
+            .param("page", "1")
+            .param("size", "10"))
+        .andDo(print())
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.error.code").value("E400"))
+        .andExpect(jsonPath("$.error.message").value("요청 변수를 확인해 주세요."));
   }
 
   @ParameterizedTest(name = "page = {0}, size = {1}")
@@ -82,12 +82,12 @@ class SearchLocationsControllerTest {
   @DisplayName("페이지와 사이즈를 밸리데이션 한다.")
   void validatePageAndSize(int page, int size) throws Exception {
     mockMvc.perform(get(ENDPOINT)
-        .param("keyword", "역")
-        .param("page", String.valueOf(page))
-        .param("size", String.valueOf(size)))
-      .andDo(print())
-      .andExpect(status().isBadRequest())
-      .andExpect(jsonPath("$.error.code").value("E400"))
-      .andExpect(jsonPath("$.error.message").value("요청 변수를 확인해 주세요."));
+            .param("keyword", "역")
+            .param("page", String.valueOf(page))
+            .param("size", String.valueOf(size)))
+        .andDo(print())
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.error.code").value("E400"))
+        .andExpect(jsonPath("$.error.message").value("요청 변수를 확인해 주세요."));
   }
 }
