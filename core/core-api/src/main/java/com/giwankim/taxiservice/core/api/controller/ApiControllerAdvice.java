@@ -5,12 +5,14 @@ import com.giwankim.taxiservice.core.api.support.error.ErrorType;
 import com.giwankim.taxiservice.core.api.support.response.ApiErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.bind.BindException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.List;
@@ -25,31 +27,43 @@ public class ApiControllerAdvice {
     switch (e.getErrorType().getLogLevel()) {
       case ERROR -> logger.error("CoreApiException : {}", e.getMessage(), e);
       case WARN -> logger.warn("CoreApiException : {}", e.getMessage(), e);
-      default -> logger.error("CoreApiException : {}", e.getMessage(), e);
+      default -> logger.debug("CoreApiException : {}", e.getMessage(), e);
     }
     return new ResponseEntity<>(ApiErrorResponse.of(e.getErrorType(), e.getData()), e.getErrorType().getStatus());
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ApiErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-    logger.error("MethodArgumentNotValidException : {}", e.getMessage(), e);
+    logger.debug("MethodArgumentNotValidException : {}", e.getMessage(), e);
     List<String> errorMessages = e.getBindingResult()
-      .getAllErrors()
-      .stream()
-      .map(DefaultMessageSourceResolvable::getDefaultMessage)
-      .toList();
+        .getAllErrors()
+        .stream()
+        .map(DefaultMessageSourceResolvable::getDefaultMessage)
+        .toList();
     return new ResponseEntity<>(ApiErrorResponse.of(ErrorType.BAD_REQUEST, errorMessages), ErrorType.BAD_REQUEST.getStatus());
+  }
+
+  @ExceptionHandler(BindException.class)
+  public ResponseEntity<ApiErrorResponse> handleBindException(BindException e) {
+    logger.debug("BindException : {}", e.getMessage(), e);
+    return new ResponseEntity<>(ApiErrorResponse.of(ErrorType.BAD_REQUEST), ErrorType.BAD_REQUEST.getStatus());
+  }
+
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  public ResponseEntity<ApiErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+    logger.debug("MethodArgumentTypeMismatchException : {}", e.getMessage(), e);
+    return new ResponseEntity<>(ApiErrorResponse.of(ErrorType.BAD_REQUEST), ErrorType.BAD_REQUEST.getStatus());
   }
 
   @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
   public ResponseEntity<ApiErrorResponse> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
-    logger.error("HttpRequestMethodNotSupportedException : {}", e.getMessage(), e);
+    logger.debug("HttpRequestMethodNotSupportedException : {}", e.getMessage(), e);
     return new ResponseEntity<>(ApiErrorResponse.of(ErrorType.METHOD_NOT_ALLOWED), ErrorType.METHOD_NOT_ALLOWED.getStatus());
   }
 
   @ExceptionHandler(NoHandlerFoundException.class)
   public ResponseEntity<ApiErrorResponse> handleNoHandlerFoundException(NoHandlerFoundException e) {
-    logger.error("NoHandlerFoundException : {}", e.getMessage(), e);
+    logger.debug("NoHandlerFoundException : {}", e.getMessage(), e);
     return new ResponseEntity<>(ApiErrorResponse.of(ErrorType.NOT_FOUND), ErrorType.NOT_FOUND.getStatus());
   }
 
