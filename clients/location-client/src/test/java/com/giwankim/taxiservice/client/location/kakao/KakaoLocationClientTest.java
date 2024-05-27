@@ -24,19 +24,23 @@ class KakaoLocationClientTest {
 
   @Test
   void searchLocations() {
-    stubFor(get(urlPathEqualTo("/search/address.json"))
-      .withQueryParam("query", equalTo("전북 삼성동 100"))
-      .willReturn(aResponse()
-        .withBody(FileUtils.read("classpath:kakao-location-response.json"))
-        .withHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-        .withStatus(HttpStatus.OK.value())));
+    String address = "전북 삼성동 100";
+    String urlPath = "/search/address.json";
+    stubFor(get(urlPathEqualTo(urlPath))
+        .withQueryParam("query", equalTo(address))
+        .willReturn(aResponse()
+            .withBody(FileUtils.read("classpath:kakao-location-response.json"))
+            .withHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .withStatus(HttpStatus.OK.value())));
 
-    List<Location> actualLocations = kakaoLocationClient.searchLocations("전북 삼성동 100", 1, 3);
+    List<Location> actualLocations = kakaoLocationClient.searchLocations(address, 1, 3);
 
     List<Location> expectedLocations = List.of(
-      new Location("전북특별자치도 익산시 부송동 100", 35.9766482774572, 126.99597495347),
-      new Location("전북특별자치도 익산시 임상동 100", 35.9816612949048, 126.980268573424),
-      new Location("전북특별자치도 익산시 정족동 100", 35.9829740190917, 127.002020445866));
+        new Location("전북특별자치도 익산시 부송동 100", 35.9766482774572, 126.99597495347),
+        new Location("전북특별자치도 익산시 임상동 100", 35.9816612949048, 126.980268573424),
+        new Location("전북특별자치도 익산시 정족동 100", 35.9829740190917, 127.002020445866));
     assertThat(actualLocations).containsExactlyElementsOf(expectedLocations);
+    verify(getRequestedFor(urlPathEqualTo(urlPath))
+        .withQueryParam("query", equalTo(address)));
   }
 }

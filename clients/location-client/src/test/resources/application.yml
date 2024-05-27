@@ -6,7 +6,16 @@ location:
       url: http://localhost:8089
       key: apiKey
 
-spring:
-  config:
-    import:
-      - client-location.yml
+spring.cloud.openfeign:
+  client:
+    config:
+      kakao-location-api:
+        connectTimeout: 2100
+        readTimeout: 5000
+        loggerLevel: full
+  compression:
+    response:
+      enabled: false
+  httpclient:
+    max-connections: 2000
+    max-connections-per-route: 500
