@@ -11,5 +11,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EntityScan(basePackages = "com.giwankim.taxiservice.storage.db.core")
 @EnableJpaRepositories(basePackages = "com.giwankim.taxiservice.storage.db.core")
-public class CoreJpaConfig {
-}
+public class CoreJpaConfig {}

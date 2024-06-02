@@ -2,10 +2,9 @@ package com.giwankim.taxiservice.client.location.kakao;
 
 import com.giwankim.taxiservice.core.domain.application.port.out.SearchLocationPort;
 import com.giwankim.taxiservice.core.domain.domain.Location;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component

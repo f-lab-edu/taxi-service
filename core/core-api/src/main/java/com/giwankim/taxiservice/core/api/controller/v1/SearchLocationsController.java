@@ -7,11 +7,10 @@ import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsQ
 import com.giwankim.taxiservice.core.domain.application.port.in.SearchLocationsUseCase;
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,7 +20,8 @@ class SearchLocationsController {
 
   @GetMapping(value = "/v1/location/search")
   ApiResponse<List<LocationResponse>> searchLocations(@Valid SearchLocationRequest request) {
-    SearchLocationsQuery query = new SearchLocationsQuery(request.keyword(), request.page(), request.size());
+    SearchLocationsQuery query =
+        new SearchLocationsQuery(request.keyword(), request.page(), request.size());
     List<Location> locations = searchLocationsUseCase.searchLocations(query);
     return ApiResponse.success(LocationResponse.of(locations));
   }

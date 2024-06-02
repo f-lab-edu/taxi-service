@@ -1,14 +1,12 @@
 package com.giwankim.taxiservice.client;
 
-import org.springframework.util.ResourceUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import org.springframework.util.ResourceUtils;
 
 public class FileUtils {
-  private FileUtils() {
-  }
+  private FileUtils() {}
 
   public static String read(String filePath) {
     try {
