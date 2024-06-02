@@ -2,6 +2,7 @@ pluginManagement {
     plugins {
         id 'org.springframework.boot' version "${springBootVersion}"
         id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+        id 'com.diffplug.spotless' version "${spotlessVersion}"
     }
 }
 
@@ -9,6 +10,8 @@ rootProject.name = 'taxi-service'
 
 include 'core:core-api'
 include 'core:core-domain'
+include 'core:core-enum'
 include 'storage:db-core'
 include 'support:logging'
 include 'support:monitoring'
+include 'clients:location-client'

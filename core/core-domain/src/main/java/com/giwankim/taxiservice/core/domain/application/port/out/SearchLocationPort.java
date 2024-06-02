@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SearchLocationPort {
 
-  List<Location> searchLocations(String keyword);
+  List<Location> searchLocations(String keyword, int page, int size);
 
 }

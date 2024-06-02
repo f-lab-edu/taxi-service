@@ -1,0 +1,11 @@
+subprojects {
+    apply plugin: 'com.diffplug.spotless'
+
+    spotless {
+        java {
+            removeUnusedImports()
+            googleJavaFormat().reflowLongStrings().reorderImports(true)
+            formatAnnotations()
+        }
+    }
+}

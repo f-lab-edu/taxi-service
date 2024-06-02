@@ -5,12 +5,24 @@ spring:
   config:
     import:
       - logging.yml
-      #      - monitoring.yml
+      - monitoring.yml
       - db-core.yml
+      - client-location.yml
+  docker.compose.enabled: false
   web.resources.add-mappings: false
+
 
 ---
 spring.config.activate.on-profile: local
+
+
+---
+spring.config.activate.on-profile: local-dev
+
+spring:
+  docker:
+    compose:
+      enabled: true
 
 
 ---

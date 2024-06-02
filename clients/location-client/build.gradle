@@ -1,0 +1,10 @@
+dependencies {
+    implementation project(':core:core-domain')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign:feign-hc5'
+    implementation 'io.github.openfeign:feign-micrometer'
+    testImplementation "org.wiremock:wiremock-standalone:${property("wireMockVersion")}"
+}

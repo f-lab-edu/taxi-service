@@ -1,0 +1,27 @@
+location:
+  kakao:
+    api:
+      url: https://dapi.kakao.com/v2/local
+      key: 590d71eaf0988b41b278884f6244e16f
+
+spring.cloud.openfeign:
+  client:
+    config:
+      kakao-location-api:
+        connectTimeout: 2100
+        readTimeout: 5000
+        loggerLevel: full
+  compression:
+    response:
+      enabled: false
+  httpclient:
+    max-connections: 2000
+    max-connections-per-route: 500
+
+---
+spring.config.activate.on-profile: local
+
+---
+spring.config.activate.on-profile:
+  - local-dev
+  - dev
