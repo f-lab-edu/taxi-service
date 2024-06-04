@@ -2,13 +2,10 @@ package com.giwankim.taxiservice.core.domain.domain;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Function;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
-@EqualsAndHashCode
-@ToString
 @Getter
 public class Money {
   public static final Money ZERO = Money.wons(0);
@@ -61,5 +58,22 @@ public class Money {
 
   public double doubleValue() {
     return amount.doubleValue();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Money money)) return false;
+    return Objects.equals(amount.doubleValue(), money.amount.doubleValue());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(amount);
+  }
+
+  @Override
+  public String toString() {
+    return amount.toString() + "원";
   }
 }
