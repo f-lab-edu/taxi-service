@@ -1,0 +1,7 @@
+spring.application.name: directions-client-test
+
+directions:
+  kakao:
+    api:
+      url: http://localhost:8090
+      key: apiKey

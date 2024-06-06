@@ -1,0 +1,13 @@
+directions:
+  kakao:
+    api:
+      url: https://apis-navi.kakaomobility.com
+      key: 590d71eaf0988b41b278884f6244e16f
+
+---
+spring.config.activate.on-profile: local
+
+---
+spring.config.activate.on-profile:
+  - local-dev
+  - dev
