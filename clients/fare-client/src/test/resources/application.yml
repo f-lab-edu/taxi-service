@@ -1,0 +1,21 @@
+spring.application.name: fare-client-test
+
+fare:
+  kakao:
+    api:
+      url: http://localhost:8091
+      key: apiKey
+
+spring.cloud.openfeign:
+  client:
+    config:
+      kakao-location-api:
+        connectTimeout: 2100
+        readTimeout: 5000
+        loggerLevel: full
+  compression:
+    response:
+      enabled: false
+  httpclient:
+    max-connections: 2000
+    max-connections-per-route: 500

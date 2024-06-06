@@ -1,0 +1,9 @@
+dependencies {
+    implementation project(':core:core-domain')
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign:feign-hc5'
+    implementation 'io.github.openfeign:feign-micrometer'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    testImplementation "org.wiremock:wiremock-standalone:${property("wireMockVersion")}"
+}
