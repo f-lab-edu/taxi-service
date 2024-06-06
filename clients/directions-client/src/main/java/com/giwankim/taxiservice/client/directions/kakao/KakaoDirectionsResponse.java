@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.giwankim.taxiservice.core.domain.domain.Directions;
 import com.giwankim.taxiservice.core.domain.domain.Location;
-
 import java.util.List;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -45,8 +44,7 @@ record KakaoDirectionsResponse(List<Route> routes) {
 
       @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
       @JsonIgnoreProperties(ignoreUnknown = true)
-      record Road(String name, int distance, int duration) {
-      }
+      record Road(String name, int distance, int duration) {}
     }
   }
 }

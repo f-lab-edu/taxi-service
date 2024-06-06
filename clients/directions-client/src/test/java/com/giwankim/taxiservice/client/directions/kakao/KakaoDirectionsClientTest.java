@@ -1,5 +1,10 @@
 package com.giwankim.taxiservice.client.directions.kakao;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import com.giwankim.taxiservice.client.directions.FileUtils;
 import com.giwankim.taxiservice.core.domain.domain.Directions;
@@ -9,17 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 @SpringBootTest
 @WireMockTest(httpPort = 8090)
 class KakaoDirectionsClientTest {
 
-  @Autowired
-  KakaoDirectionsClient kakaoDirectionsClient;
+  @Autowired KakaoDirectionsClient kakaoDirectionsClient;
 
   @Test
   void loadDirections() {
