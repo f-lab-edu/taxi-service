@@ -1,6 +1,5 @@
 package com.giwankim.taxiservice.client.directions.kakao;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -9,18 +8,12 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 @Configuration
 class KakaoDirectionsConfig {
-  @Value("${directions.kakao.api.key}")
-  private String apiKey;
-
-  @Value("${directions.kakao.api.url}")
-  private String apiUrl;
-
   @Bean
-  public KakaoDirectionsApi kakaoDirectionsApi() {
+  public KakaoDirectionsApi kakaoDirectionsApi(KakaoDirectionsConfigProperties properties) {
     WebClient webClient =
         WebClient.builder()
-            .baseUrl(apiUrl)
-            .defaultHeader("Authorization", "KakaoAK " + apiKey)
+            .baseUrl(properties.getApi().getUrl())
+            .defaultHeader("Authorization", "KakaoAK " + properties.getApi().getKey())
             .build();
     WebClientAdapter adapter = WebClientAdapter.create(webClient);
     HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
