@@ -16,7 +16,7 @@ class KakaoDirectionsConfig {
   private String apiUrl;
 
   @Bean
-  KakaoDirectionsApi kakaoDirectionsApi() {
+  public KakaoDirectionsApi kakaoDirectionsApi() {
     WebClient webClient =
         WebClient.builder()
             .baseUrl(apiUrl)

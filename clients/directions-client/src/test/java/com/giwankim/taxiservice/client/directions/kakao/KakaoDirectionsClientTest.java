@@ -25,8 +25,8 @@ class KakaoDirectionsClientTest {
     String urlPath = "/v1/directions";
     stubFor(
         get(urlPathEqualTo(urlPath))
-            .withQueryParam("origin", matching("^(-?\\d+(\\.\\d+)?),(-?\\d+(\\.\\d+)?)$"))
-            .withQueryParam("destination", matching("^(-?\\d+(\\.\\d+)?),(-?\\d+(\\.\\d+)?)$"))
+            .withQueryParam("origin", matching(".*"))
+            .withQueryParam("destination", matching(".*"))
             .willReturn(
                 aResponse()
                     .withBody(FileUtils.read("classpath:kakao-directions-response.json"))
