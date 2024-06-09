@@ -11,6 +11,6 @@ class KakaoFareConfig {
   @Bean
   public RequestInterceptor requestInterceptor(KakaoFareConfigProperties properties) {
     return requestTemplate ->
-        requestTemplate.header("Authorization", "KakaoAK " + properties.getApiKey());
+        requestTemplate.header("Authorization", "KakaoAK " + properties.getApi().getKey());
   }
 }
