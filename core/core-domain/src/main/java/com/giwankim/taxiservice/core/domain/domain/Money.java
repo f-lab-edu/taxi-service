@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Function;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class Money {
   public static final Money ZERO = Money.wons(0);
 
@@ -70,10 +72,5 @@ public class Money {
   @Override
   public int hashCode() {
     return Objects.hashCode(amount);
-  }
-
-  @Override
-  public String toString() {
-    return amount.toString() + "원";
   }
 }
