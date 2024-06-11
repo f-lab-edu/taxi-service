@@ -6,7 +6,7 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import com.giwankim.taxiservice.client.fare.FileUtils;
+import com.giwankim.taxiservice.client.FareClientFixture;
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import com.giwankim.taxiservice.core.domain.domain.Money;
 import org.junit.jupiter.api.Test;
@@ -24,11 +24,12 @@ class KakaoFareClientTest {
     String urlPath = "/v1/directions";
     stubFor(
         get(urlPathEqualTo(urlPath))
+            .withHeader("Authorization", matching(".*"))
             .withQueryParam("origin", matching(".*"))
             .withQueryParam("destination", matching(".*"))
             .willReturn(
                 aResponse()
-                    .withBody(FileUtils.read("classpath:kakao-fare-response.json"))
+                    .withBody(FareClientFixture.KAKAO_FARE_SUCCESS_RESPONSE_BODY)
                     .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                     .withStatus(HttpStatus.OK.value())));
 
