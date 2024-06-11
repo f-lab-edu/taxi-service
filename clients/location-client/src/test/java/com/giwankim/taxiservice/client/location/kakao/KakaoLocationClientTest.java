@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import com.giwankim.taxiservice.client.location.FileUtils;
+import com.giwankim.taxiservice.client.LocationClientFixture;
 import com.giwankim.taxiservice.core.domain.domain.Location;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -26,10 +26,11 @@ class KakaoLocationClientTest {
     String urlPath = "/search/address.json";
     stubFor(
         get(urlPathEqualTo(urlPath))
+            .withHeader("Authorization", matching("KakaoAK .*"))
             .withQueryParam("query", equalTo(address))
             .willReturn(
                 aResponse()
-                    .withBody(FileUtils.read("classpath:kakao-location-response.json"))
+                    .withBody(LocationClientFixture.KAKAO_LOCATION_RESPONSE_BODY)
                     .withHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .withStatus(HttpStatus.OK.value())));
 
