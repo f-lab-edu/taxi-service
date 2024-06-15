@@ -9,7 +9,7 @@ import java.util.List;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-record KakaoDirectionsResponse(List<Route> routes) {
+public record KakaoDirectionsResponse(List<Route> routes) {
   Directions toDirections() {
     Route route = routes.getFirst();
     Location origin = route.summary().origin().toLocation();

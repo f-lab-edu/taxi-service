@@ -6,16 +6,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-class KakaoFareRequest {
+public class KakaoFareRequest {
   private String origin;
   private String destination;
 
-  KakaoFareRequest(String origin, String destination) {
+  public KakaoFareRequest(String origin, String destination) {
     this.origin = origin;
     this.destination = destination;
   }
 
-  KakaoFareRequest(Location origin, Location destination) {
+  public KakaoFareRequest(Location origin, Location destination) {
     this(
         origin.getLongitude() + "," + origin.getLatitude(),
         destination.getLongitude() + "," + destination.getLatitude());

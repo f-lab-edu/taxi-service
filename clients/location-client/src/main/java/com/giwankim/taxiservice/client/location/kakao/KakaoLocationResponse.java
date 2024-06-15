@@ -8,7 +8,7 @@ import java.util.List;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-record KakaoLocationResponse(Meta meta, List<Document> documents) {
+public record KakaoLocationResponse(Meta meta, List<Document> documents) {
 
   List<Location> toLocations() {
     return documents().stream()
