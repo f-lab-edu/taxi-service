@@ -18,7 +18,7 @@ class TripEstimateTest {
   @MethodSource("provideArgumentsForCreate")
   @DisplayName("create 메서드 테스트")
   void create(TaxiType taxiType, Class<?> expectedSurchargePolicyClass) {
-    Money baseFare = Money.wons(10_000);
+    KRWMoney baseFare = KRWMoney.wons(10_000);
     assertThat(TripEstimate.create(taxiType, baseFare).getSurchargePolicy())
         .isInstanceOf(expectedSurchargePolicyClass);
   }
@@ -34,19 +34,19 @@ class TripEstimateTest {
   @MethodSource("provideArgumentsForCalculateTotalFare")
   @DisplayName("calculateTotalFare 메서드 테스트")
   void calculateTotalFare(
-      TaxiType taxiType, Money baseFare, Directions directions, Money expectedTotalFare) {
+      TaxiType taxiType, KRWMoney baseFare, Directions directions, KRWMoney expectedTotalFare) {
     TripEstimate tripEstimate = TripEstimate.create(taxiType, baseFare);
-    Money actualTotalFare = tripEstimate.calculateTotalFare(directions);
+    KRWMoney actualTotalFare = tripEstimate.calculateTotalFare(directions);
     assertThat(actualTotalFare).isEqualTo(expectedTotalFare);
   }
 
   private static Stream<Arguments> provideArgumentsForCalculateTotalFare() {
     return Stream.of(
         Arguments.of(
-            TaxiType.REGULAR, Money.wons(10_000), aDirections().build(), Money.wons(10_000)),
+            TaxiType.REGULAR, KRWMoney.wons(10_000), aDirections().build(), KRWMoney.wons(10_000)),
         Arguments.of(
-            TaxiType.DELUXE, Money.wons(10_000), aDirections().build(), Money.wons(15_000)),
+            TaxiType.DELUXE, KRWMoney.wons(10_000), aDirections().build(), KRWMoney.wons(15_000)),
         Arguments.of(
-            TaxiType.JUMBO, Money.wons(10_000), aDirections().build(), Money.wons(20_000)));
+            TaxiType.JUMBO, KRWMoney.wons(10_000), aDirections().build(), KRWMoney.wons(20_000)));
   }
 }

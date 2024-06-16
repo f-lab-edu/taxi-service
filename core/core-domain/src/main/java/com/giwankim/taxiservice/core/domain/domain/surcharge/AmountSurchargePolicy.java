@@ -1,18 +1,18 @@
 package com.giwankim.taxiservice.core.domain.domain.surcharge;
 
 import com.giwankim.taxiservice.core.domain.domain.Directions;
-import com.giwankim.taxiservice.core.domain.domain.Money;
+import com.giwankim.taxiservice.core.domain.domain.KRWMoney;
 import com.giwankim.taxiservice.core.domain.domain.SurchargePolicy;
 
 public class AmountSurchargePolicy implements SurchargePolicy {
-  private final Money surchargeAmount;
+  private final KRWMoney surchargeAmount;
 
-  public AmountSurchargePolicy(Money surchargeAmount) {
+  public AmountSurchargePolicy(KRWMoney surchargeAmount) {
     this.surchargeAmount = surchargeAmount;
   }
 
   @Override
-  public Money calculateSurchargeAmount(Money baseFare, Directions directions) {
+  public KRWMoney calculateSurchargeAmount(KRWMoney baseFare, Directions directions) {
     return surchargeAmount;
   }
 }

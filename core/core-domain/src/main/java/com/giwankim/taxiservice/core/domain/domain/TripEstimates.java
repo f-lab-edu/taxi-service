@@ -9,15 +9,15 @@ import lombok.Getter;
 @Getter
 public class TripEstimates {
   private final Directions directions;
-  private final Money baseFare;
+  private final KRWMoney baseFare;
   private final List<TripEstimate> estimates = new ArrayList<>();
 
-  public TripEstimates(Money baseFare, Directions directions, TripEstimate... estimates) {
+  public TripEstimates(KRWMoney baseFare, Directions directions, TripEstimate... estimates) {
     this(baseFare, directions, Arrays.asList(estimates));
   }
 
   @Builder
-  public TripEstimates(Money baseFare, Directions directions, List<TripEstimate> estimates) {
+  public TripEstimates(KRWMoney baseFare, Directions directions, List<TripEstimate> estimates) {
     this.baseFare = baseFare;
     this.directions = directions;
     this.estimates.addAll(estimates);

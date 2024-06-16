@@ -5,7 +5,7 @@ import com.giwankim.taxiservice.core.domain.application.port.in.GetTripEstimates
 import com.giwankim.taxiservice.core.domain.application.port.out.LoadBaseFarePort;
 import com.giwankim.taxiservice.core.domain.application.port.out.LoadDirectionsPort;
 import com.giwankim.taxiservice.core.domain.domain.Directions;
-import com.giwankim.taxiservice.core.domain.domain.Money;
+import com.giwankim.taxiservice.core.domain.domain.KRWMoney;
 import com.giwankim.taxiservice.core.domain.domain.TripEstimate;
 import com.giwankim.taxiservice.core.domain.domain.TripEstimates;
 import com.giwankim.taxiservice.core.enums.TaxiType;
@@ -25,7 +25,7 @@ public class GetTripEstimatesService implements GetTripEstimatesUseCase {
   public TripEstimates getTripEstimates(GetTripEstimatesQuery query) {
     Directions directions = loadDirectionsPort.loadDirections(query.origin(), query.destination());
 
-    Money baseFare = loadBaseFarePort.loadBaseFare(query.origin(), query.destination());
+    KRWMoney baseFare = loadBaseFarePort.loadBaseFare(query.origin(), query.destination());
 
     List<TripEstimate> estimates =
         Arrays.stream(TaxiType.values())

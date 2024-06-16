@@ -1,5 +1,5 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
 public interface SurchargePolicy {
-  Money calculateSurchargeAmount(Money baseFare, Directions directions);
+  KRWMoney calculateSurchargeAmount(KRWMoney baseFare, Directions directions);
 }
