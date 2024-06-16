@@ -1,0 +1,21 @@
+directions:
+  kakao:
+    api:
+      url: https://apis-navi.kakaomobility.com
+      key: 590d71eaf0988b41b278884f6244e16f
+
+client:
+  config:
+    kakao-directions-api:
+      connectTimeout: 2100
+      readTimeout: 5000
+
+logging.level.reactor.netty.http.client: DEBUG
+
+---
+spring.config.activate.on-profile: local
+
+---
+spring.config.activate.on-profile:
+  - local-dev
+  - dev

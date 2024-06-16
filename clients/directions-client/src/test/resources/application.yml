@@ -1,0 +1,15 @@
+spring.application.name: directions-client-test
+
+directions:
+  kakao:
+    api:
+      url: http://localhost:8090
+      key: apiKey
+
+client:
+  config:
+    kakao-directions-api:
+      connectTimeout: 2100
+      readTimeout: 5000
+
+logging.level.reactor.netty.http.client: DEBUG

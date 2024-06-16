@@ -1,4 +1,4 @@
-package com.giwankim.taxiservice.client;
+package com.giwankim.taxiservice.client.fare;
 
 import java.io.File;
 import java.io.IOException;
