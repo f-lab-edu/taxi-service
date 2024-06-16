@@ -12,7 +12,7 @@ public class Ratio {
     return new Ratio(rate);
   }
 
-  public Money of(Money money) {
-    return money.times(rate);
+  public KRWMoney of(KRWMoney moneyKrw) {
+    return moneyKrw.times(rate);
   }
 }

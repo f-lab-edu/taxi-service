@@ -9,7 +9,7 @@ class RatioTest {
   @Test
   void percent() {
     Ratio tenPercent = Ratio.valueOf(0.1);
-    Money tenThousandWon = Money.wons(10000);
-    assertThat(tenPercent.of(tenThousandWon)).isEqualTo(Money.wons(1000));
+    KRWMoney tenThousandWon = KRWMoney.wons(10000);
+    assertThat(tenPercent.of(tenThousandWon)).isEqualTo(KRWMoney.wons(1000));
   }
 }

@@ -7,8 +7,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import com.giwankim.taxiservice.client.FareClientFixture;
+import com.giwankim.taxiservice.core.domain.domain.KRWMoney;
 import com.giwankim.taxiservice.core.domain.domain.Location;
-import com.giwankim.taxiservice.core.domain.domain.Money;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,9 +36,9 @@ class KakaoFareClientTest {
     Location origin = new Location("출발지", 37.394725518530834, 127.11015051307636);
     Location destination = new Location("도착지", 37.401928707331656, 127.10823557165544);
 
-    Money baseFare = kakaoFareClient.loadBaseFare(origin, destination);
+    KRWMoney baseFare = kakaoFareClient.loadBaseFare(origin, destination);
 
     verify(getRequestedFor(urlPathEqualTo(urlPath)));
-    assertThat(baseFare).isEqualTo(Money.wons(5200));
+    assertThat(baseFare).isEqualTo(KRWMoney.wons(5200));
   }
 }
