@@ -37,7 +37,7 @@ public class Fixtures {
   }
 
   public static TripEstimatesBuilder aTripEstimates() {
-    Money baseFare = Money.wons(3800);
+    KRWMoney baseFare = KRWMoney.wons(3800);
     return TripEstimates.builder()
         .baseFare(baseFare)
         .directions(aDirections().build())
