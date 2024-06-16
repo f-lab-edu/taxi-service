@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "kakao-location-api", url = "${location.kakao.api.url}")
 interface KakaoLocationApi {
 
-  @RequestMapping(method = RequestMethod.GET, value = "/search/address.json",
+  @RequestMapping(
+      method = RequestMethod.GET,
+      value = "/search/address.json",
       consumes = MediaType.APPLICATION_JSON_VALUE)
   KakaoLocationResponse searchLocations(@SpringQueryMap KakaoLocationRequest request);
 }
