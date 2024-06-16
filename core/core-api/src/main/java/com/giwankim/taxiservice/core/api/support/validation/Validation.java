@@ -5,14 +5,12 @@ import static jakarta.validation.Validation.buildDefaultValidatorFactory;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
-
 import java.util.Set;
 
 public class Validation {
   private static final Validator validator = buildDefaultValidatorFactory().getValidator();
 
-  private Validation() {
-  }
+  private Validation() {}
 
   public static <T> void validate(T subject) {
     Set<ConstraintViolation<T>> violations = validator.validate(subject);
