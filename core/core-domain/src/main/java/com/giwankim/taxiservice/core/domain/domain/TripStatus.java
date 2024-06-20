@@ -1,4 +1,4 @@
-package com.giwankim.taxiservice.core.enums;
+package com.giwankim.taxiservice.core.domain.domain;
 
 public enum TripStatus {
   MATCHED,

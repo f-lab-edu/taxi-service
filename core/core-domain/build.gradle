@@ -1,6 +1,4 @@
 dependencies {
-    implementation project(':core:core-enum')
-
     testImplementation project(':tests:test-data')
 
     implementation "org.joda:joda-money:${property("jodaMoneyVersion")}"
