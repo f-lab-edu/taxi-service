@@ -17,6 +17,10 @@ public class TripEstimates {
     this.estimates.addAll(estimates);
   }
 
+  public static TripEstimates from(List<TripEstimate> estimates) {
+    return new TripEstimates(estimates);
+  }
+
   public List<TripEstimate> getEstimates() {
     return Collections.unmodifiableList(estimates);
   }

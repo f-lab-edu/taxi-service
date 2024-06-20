@@ -2,13 +2,13 @@ package com.giwankim.taxiservice.core.domain.application.service;
 
 import com.giwankim.taxiservice.core.domain.application.port.in.GetTripEstimatesQuery;
 import com.giwankim.taxiservice.core.domain.application.port.in.GetTripEstimatesUseCase;
+import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates;
 import com.giwankim.taxiservice.core.domain.application.port.out.LoadBaseFarePort;
 import com.giwankim.taxiservice.core.domain.application.port.out.LoadDirectionsPort;
 import com.giwankim.taxiservice.core.domain.domain.Directions;
 import com.giwankim.taxiservice.core.domain.domain.KRWMoney;
+import com.giwankim.taxiservice.core.domain.domain.TaxiType;
 import com.giwankim.taxiservice.core.domain.domain.TripEstimate;
-import com.giwankim.taxiservice.core.domain.domain.TripEstimates;
-import com.giwankim.taxiservice.core.enums.TaxiType;
 import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +24,11 @@ public class GetTripEstimatesService implements GetTripEstimatesUseCase {
   @Override
   public TripEstimates getTripEstimates(GetTripEstimatesQuery query) {
     Directions directions = loadDirectionsPort.loadDirections(query.origin(), query.destination());
-
     KRWMoney baseFare = loadBaseFarePort.loadBaseFare(query.origin(), query.destination());
-
     List<TripEstimate> estimates =
         Arrays.stream(TaxiType.values())
-            .map(taxiType -> TripEstimate.create(taxiType, baseFare))
+            .map(taxiType -> TripEstimate.of(taxiType, baseFare, directions))
             .toList();
-
-    return new TripEstimates(baseFare, directions, estimates);
+    return TripEstimates.from(estimates);
   }
 }

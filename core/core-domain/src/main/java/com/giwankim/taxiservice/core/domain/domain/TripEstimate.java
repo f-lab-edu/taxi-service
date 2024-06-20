@@ -1,8 +1,5 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
-import com.giwankim.taxiservice.core.domain.domain.surcharge.AmountSurchargePolicy;
-import com.giwankim.taxiservice.core.domain.domain.surcharge.NoneSurchargePolicy;
-import com.giwankim.taxiservice.core.enums.TaxiType;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -10,29 +7,20 @@ import lombok.Getter;
 public class TripEstimate {
   private final TaxiType taxiType;
   private final KRWMoney baseFare;
-  private final SurchargePolicy surchargePolicy;
+  private final Directions directions;
 
   @Builder
-  public TripEstimate(TaxiType taxiType, KRWMoney baseFare, SurchargePolicy surchargePolicy) {
+  public TripEstimate(TaxiType taxiType, KRWMoney baseFare, Directions directions) {
     this.taxiType = taxiType;
     this.baseFare = baseFare;
-    this.surchargePolicy = surchargePolicy;
+    this.directions = directions;
   }
 
-  public static TripEstimate create(TaxiType taxiType, KRWMoney baseFare) {
-    return switch (taxiType) {
-      case REGULAR -> new TripEstimate(TaxiType.REGULAR, baseFare, new NoneSurchargePolicy());
-      case DELUXE ->
-          new TripEstimate(
-              TaxiType.DELUXE, baseFare, new AmountSurchargePolicy(KRWMoney.wons(5_000)));
-      case JUMBO ->
-          new TripEstimate(
-              TaxiType.JUMBO, baseFare, new AmountSurchargePolicy(KRWMoney.wons(10_000)));
-    };
+  public static TripEstimate of(TaxiType taxiType, KRWMoney baseFare, Directions directions) {
+    return new TripEstimate(taxiType, baseFare, directions);
   }
 
   public KRWMoney calculateTotalFare(Directions directions) {
-    KRWMoney surchargeAmount = surchargePolicy.calculateSurchargeAmount(baseFare, directions);
-    return baseFare.plus(surchargeAmount);
+    return taxiType.calculateTotalFare(baseFare, directions);
   }
 }
