@@ -1,8 +1,12 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 @Getter
 public class TripEstimate {
   private final TaxiType taxiType;
