@@ -5,7 +5,7 @@ import com.giwankim.taxiservice.core.api.controller.v1.response.TripEstimatesRes
 import com.giwankim.taxiservice.core.api.support.response.ApiResponse;
 import com.giwankim.taxiservice.core.domain.application.port.in.GetTripEstimatesQuery;
 import com.giwankim.taxiservice.core.domain.application.port.in.GetTripEstimatesUseCase;
-import com.giwankim.taxiservice.core.domain.domain.TripEstimates;
+import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
