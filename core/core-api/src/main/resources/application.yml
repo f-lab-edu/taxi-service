@@ -8,6 +8,8 @@ spring:
       - monitoring.yml
       - db-core.yml
       - client-location.yml
+      - client-fare.yml
+      - client-directions.yml
   docker.compose.enabled: false
   web.resources.add-mappings: false
 

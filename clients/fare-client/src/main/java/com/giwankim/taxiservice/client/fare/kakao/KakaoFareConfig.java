@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class KakaoFareConfig {
   @Bean
-  public RequestInterceptor requestInterceptor(KakaoFareConfigProperties properties) {
+  public RequestInterceptor kakaoFareRequestInterceptor(KakaoFareConfigProperties properties) {
     return requestTemplate ->
         requestTemplate.header("Authorization", "KakaoAK " + properties.getApi().getKey());
   }

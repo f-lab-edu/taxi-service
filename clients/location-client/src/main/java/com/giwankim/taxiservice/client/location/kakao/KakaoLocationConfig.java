@@ -14,7 +14,7 @@ class KakaoLocationConfig {
   private String apiKey;
 
   @Bean
-  public RequestInterceptor requestInterceptor() {
+  public RequestInterceptor kakaoLocationRequestInterceptor() {
     return requestTemplate -> requestTemplate.header("Authorization", "KakaoAK " + apiKey);
   }
 }

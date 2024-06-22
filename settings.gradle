@@ -10,7 +10,6 @@ rootProject.name = 'taxi-service'
 
 include 'core:core-api'
 include 'core:core-domain'
-include 'core:core-enum'
 include 'storage:db-core'
 include 'support:logging'
 include 'support:monitoring'
