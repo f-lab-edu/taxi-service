@@ -2,5 +2,7 @@ dependencies {
     implementation project(':core:core-domain')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    testImplementation "com.github.codemonstur:embedded-redis:${property("embeddedRedisVersion")}"
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation "com.redis:testcontainers-redis:${property("redisTestContainersVersion")}"
 }
