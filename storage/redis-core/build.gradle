@@ -1,0 +1,8 @@
+dependencies {
+    implementation project(':core:core-domain')
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation "com.redis:testcontainers-redis:${property("redisTestContainersVersion")}"
+}

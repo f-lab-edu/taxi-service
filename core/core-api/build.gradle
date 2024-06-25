@@ -10,6 +10,8 @@ dependencies {
     implementation project(':clients:fare-client')
     implementation project(':clients:directions-client')
 
+    testImplementation project(':tests:test-data')
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'

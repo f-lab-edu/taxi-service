@@ -1,0 +1,26 @@
+---
+spring.config.activate.on-profile: local
+
+storage:
+  redis:
+    core:
+      host-name: localhost
+      port: 6379
+
+---
+spring.config.activate.on-profile: local-dev
+
+storage:
+  redis:
+    core:
+      host-name: ${storage.redis.core.host}
+      port: ${storage.redis.core.port}
+
+---
+spring.config.activate.on-profile: dev
+
+storage:
+  redis:
+    core:
+      host-name: ${storage.redis.core.host}
+      port: ${storage.redis.core.port}

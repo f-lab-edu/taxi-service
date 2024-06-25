@@ -1,9 +1,11 @@
 package com.giwankim.taxiservice.domain;
 
-import com.giwankim.taxiservice.core.domain.domain.Directions;
+import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates;
+import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates.TripEstimatesBuilder;
+import com.giwankim.taxiservice.core.domain.domain.*;
 import com.giwankim.taxiservice.core.domain.domain.Directions.DirectionsBuilder;
-import com.giwankim.taxiservice.core.domain.domain.Location;
 import com.giwankim.taxiservice.core.domain.domain.Location.LocationBuilder;
+import java.util.Arrays;
 
 public class Fixtures {
   private Fixtures() {}
@@ -32,5 +34,16 @@ public class Fixtures {
         .destination(aDestination().build())
         .distance(1033)
         .duration(320);
+  }
+
+  public static TripEstimatesBuilder aTripEstimates() {
+    KRWMoney baseFare = KRWMoney.wons(3800);
+    Directions directions = aDirections().build();
+    return TripEstimates.builder()
+        .estimates(
+            Arrays.asList(
+                TripEstimate.of(TaxiType.REGULAR, baseFare, directions),
+                TripEstimate.of(TaxiType.DELUXE, baseFare, directions),
+                TripEstimate.of(TaxiType.JUMBO, baseFare, directions)));
   }
 }

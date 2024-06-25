@@ -1,0 +1,6 @@
+spring.application.name: redis-core-test
+
+spring:
+  config:
+    import:
+      - redis-core.yml
