@@ -1,7 +1,6 @@
 package com.giwankim.taxiservice.core.domain.domain;
 
 import java.net.URL;
-
 import lombok.Builder;
 import lombok.Getter;
 
@@ -33,6 +32,5 @@ public class Driver {
     this.location = location;
   }
 
-  public record DriverId(Long value) {
-  }
+  public record DriverId(Long value) {}
 }
