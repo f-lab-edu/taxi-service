@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class PickupRequest {
   private final RequestId id;
-  private final MatchingStatus status;
+  private final PickupRequestStatus status;
   private final Passenger passenger;
   private final Location pickup;
   private final Location dropoff;
@@ -15,7 +15,7 @@ public class PickupRequest {
   @Builder
   public PickupRequest(
       RequestId id,
-      MatchingStatus status,
+      PickupRequestStatus status,
       Passenger passenger,
       Location pickup,
       Location dropoff,
@@ -26,6 +26,10 @@ public class PickupRequest {
     this.pickup = pickup;
     this.dropoff = dropoff;
     this.taxiType = taxiType;
+  }
+
+  public PickupRequest(Passenger passenger, Location pickup, Location dropoff, TaxiType taxiType) {
+    this(null, PickupRequestStatus.SUBMITTED, passenger, pickup, dropoff, taxiType);
   }
 
   public record RequestId(String value) {}
