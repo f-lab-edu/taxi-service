@@ -4,7 +4,11 @@ import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates;
 import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates.TripEstimatesBuilder;
 import com.giwankim.taxiservice.core.domain.domain.*;
 import com.giwankim.taxiservice.core.domain.domain.Directions.DirectionsBuilder;
+import com.giwankim.taxiservice.core.domain.domain.KRWMoney;
+import com.giwankim.taxiservice.core.domain.domain.Location;
 import com.giwankim.taxiservice.core.domain.domain.Location.LocationBuilder;
+import com.giwankim.taxiservice.core.domain.domain.Passenger.PassengerBuilder;
+import com.giwankim.taxiservice.core.domain.domain.PickupRequest.PickupRequestBuilder;
 import java.util.Arrays;
 
 public class Fixtures {
@@ -45,5 +49,23 @@ public class Fixtures {
                 TripEstimate.of(TaxiType.REGULAR, baseFare, directions),
                 TripEstimate.of(TaxiType.DELUXE, baseFare, directions),
                 TripEstimate.of(TaxiType.JUMBO, baseFare, directions)));
+  }
+
+  public static PassengerBuilder aPassenger() {
+    return Passenger.builder()
+        .id(new Passenger.PassengerId(1L))
+        .username("홍길동")
+        .password("secret-password")
+        .phoneNumber("01012345678");
+  }
+
+  public static PickupRequestBuilder aPickupRequest() {
+    return PickupRequest.builder()
+        .id(new PickupRequest.RequestId("806776b0-446f-455b-9eb1-739ab088a244"))
+        .status(PickupRequestStatus.SUBMITTED)
+        .passenger(aPassenger().build())
+        .pickup(anOrigin().build())
+        .dropoff(aDestination().build())
+        .taxiType(TaxiType.REGULAR);
   }
 }

@@ -9,6 +9,8 @@ import com.giwankim.taxiservice.core.domain.application.port.in.TripEstimates;
 import com.giwankim.taxiservice.core.domain.application.port.out.LoadBaseFarePort;
 import com.giwankim.taxiservice.core.domain.application.port.out.LoadDirectionsPort;
 import com.giwankim.taxiservice.core.domain.domain.*;
+import com.giwankim.taxiservice.core.domain.domain.KRWMoney;
+import com.giwankim.taxiservice.core.domain.domain.Location;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
