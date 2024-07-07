@@ -17,7 +17,8 @@ public class RequestPickupService implements RequestPickupUseCase {
   @Override
   public PickupRequest requestPickup(RequestPickupCommand command) {
     PickupRequest pickupRequest =
-        storePickupRequestPort.storePickupRequest(command.toPickupRequest());
+        storePickupRequestPort.storePickupRequest(
+            command.toPickupRequest(), command.ttlInSeconds());
     applicationEventPublisher.publishEvent(new PickupRequestSubmittedEvent(pickupRequest));
     return pickupRequest;
   }
