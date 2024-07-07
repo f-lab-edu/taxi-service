@@ -4,20 +4,21 @@ import com.giwankim.taxiservice.core.domain.domain.PickupRequestStatus;
 import com.giwankim.taxiservice.core.domain.domain.TaxiType;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.geo.Point;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
 
 @RedisHash(value = "pickupRequest", timeToLive = 300)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class PickupRequestRedisEntity {
   @Id private String id;
   PickupRequestStatus status;
-  private Long passengerId;
-  private Point pickup;
-  private Point dropoff;
+  private PassengerRedisEntity passenger;
+  private LocationRedisEntity pickup;
+  private LocationRedisEntity dropoff;
   private TaxiType taxiType;
 
   @TimeToLive private Long timeToLive;
@@ -26,14 +27,14 @@ public class PickupRequestRedisEntity {
   public PickupRequestRedisEntity(
       String id,
       PickupRequestStatus status,
-      Long passengerId,
-      Point pickup,
-      Point dropoff,
+      PassengerRedisEntity passenger,
+      LocationRedisEntity pickup,
+      LocationRedisEntity dropoff,
       TaxiType taxiType,
       Long timeToLive) {
     this.id = id;
     this.status = status;
-    this.passengerId = passengerId;
+    this.passenger = passenger;
     this.pickup = pickup;
     this.dropoff = dropoff;
     this.taxiType = taxiType;
