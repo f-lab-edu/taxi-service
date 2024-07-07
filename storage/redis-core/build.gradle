@@ -1,6 +1,8 @@
 dependencies {
     implementation project(':core:core-domain')
 
+    testImplementation project(':tests:test-data')
+
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
