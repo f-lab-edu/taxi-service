@@ -29,7 +29,7 @@ class RequestPickupServiceTest {
   @DisplayName("배차 요청을 저장한다.")
   void should_persist_request_to_redis() {
     PickupRequest pickupRequest = aPickupRequest().build();
-    given(storePickupRequestPort.storePickupRequest(any(PickupRequest.class)))
+    given(storePickupRequestPort.storePickupRequest(any(PickupRequest.class), any(Long.class)))
         .willReturn(pickupRequest);
 
     RequestPickupCommand command =
@@ -37,17 +37,20 @@ class RequestPickupServiceTest {
             pickupRequest.getPassenger(),
             pickupRequest.getPickup(),
             pickupRequest.getDropoff(),
-            pickupRequest.getTaxiType());
+            pickupRequest.getTaxiType(),
+            300L);
     requestPickupService.requestPickup(command);
 
-    then(storePickupRequestPort).should(times(1)).storePickupRequest(any(PickupRequest.class));
+    then(storePickupRequestPort)
+        .should(times(1))
+        .storePickupRequest(any(PickupRequest.class), any(Long.class));
   }
 
   @Test
   @DisplayName("배차 요청 이벤트를 발행한다.")
   void should_publish_event() {
     PickupRequest pickupRequest = aPickupRequest().build();
-    given(storePickupRequestPort.storePickupRequest(any(PickupRequest.class)))
+    given(storePickupRequestPort.storePickupRequest(any(PickupRequest.class), any(Long.class)))
         .willReturn(pickupRequest);
 
     RequestPickupCommand command =
@@ -55,7 +58,8 @@ class RequestPickupServiceTest {
             pickupRequest.getPassenger(),
             pickupRequest.getPickup(),
             pickupRequest.getDropoff(),
-            pickupRequest.getTaxiType());
+            pickupRequest.getTaxiType(),
+            300L);
     requestPickupService.requestPickup(command);
 
     then(applicationEventPublisher)

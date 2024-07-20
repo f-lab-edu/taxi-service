@@ -6,7 +6,7 @@ import com.giwankim.taxiservice.core.domain.domain.PickupRequest;
 import com.giwankim.taxiservice.core.domain.domain.TaxiType;
 
 public record RequestPickupCommand(
-    Passenger passenger, Location pickup, Location dropoff, TaxiType taxiType) {
+    Passenger passenger, Location pickup, Location dropoff, TaxiType taxiType, Long ttlInSeconds) {
   public PickupRequest toPickupRequest() {
     return new PickupRequest(passenger, pickup, dropoff, taxiType);
   }

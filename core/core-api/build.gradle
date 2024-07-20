@@ -6,6 +6,7 @@ dependencies {
     implementation project(':support:logging')
     implementation project(':support:monitoring')
     implementation project(':storage:db-core')
+    implementation project(':storage:redis-core')
     implementation project(':clients:location-client')
     implementation project(':clients:fare-client')
     implementation project(':clients:directions-client')
